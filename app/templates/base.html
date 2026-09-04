@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praja Guide AI | Intelligent Public Benefit Discovery</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'var(--bg-deep)',
+                        surface: 'var(--bg-surface)',
+                        primary: 'var(--primary)',
+                        accent: 'var(--accent)',
+                        textMuted: 'var(--text-muted)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-primary selection:text-white relative">
+
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-accent/10 blur-[120px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/5 bg-background/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center shadow-lg shadow-blue-900/20">
+                    <i class="ph-bold ph-paper-plane-tilt text-white text-xl"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tight text-white">Praja<span class="text-primary">Guide</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-textMuted">
+                <a href="#how-it-works" class="hover:text-white transition-colors">How it Works</a>
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#check-eligibility" class="text-white bg-white/10 px-4 py-2 rounded-full border border-white/5 hover:bg-white/20 transition-all">Check Eligibility</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-20">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-t border-white/10 bg-black pt-20 pb-10 mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <i class="ph-fill ph-paper-plane-tilt text-2xl text-primary"></i>
+                        <span class="text-xl font-bold text-white">PrajaGuide</span>
+                    </div>
+                    <p class="text-textMuted text-sm leading-relaxed mb-6">
+                        Democratizing access to public benefits through Artificial Intelligence. Built for a Digital India.
+                    </p>
+                    <div class="flex gap-4 text-textMuted">
+                        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-twitter-logo text-xl"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-github-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Platform</h4>
+                    <ul class="space-y-4 text-sm text-textMuted">
+                        <li><a href="#" class="hover:text-primary transition">Eligibility Engine</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Scheme Directory</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Document Locker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Resources</h4>
+                    <ul class="space-y-4 text-sm text-textMuted">
+                        <li><a href="#" class="hover:text-primary transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Government API</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm text-textMuted">
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Data Usage</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-textMuted">© 2026 Praja Guide Technologies. All rights reserved.</p>
+                <div class="flex items-center gap-2 text-xs text-textMuted">
+                    <span class="w-2 h-2 rounded-full bg-success"></span> Systems Operational v2.4
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ai-assistant-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="ai-chat-window" class="hidden mb-4 w-[90vw] md:w-[400px] h-[600px] glass-panel rounded-2xl flex flex-col overflow-hidden shadow-2xl transition-all origin-bottom-right">
+            <div class="bg-white/5 p-4 border-b border-white/5 flex justify-between items-center backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                            <i class="ph-bold ph-robot text-white"></i>
+                        </div>
+                        <span class="absolute -bottom-1 -right-1 w-3 h-3 bg-success border-2 border-background rounded-full"></span>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white">GovSahayak AI</h3>
+                        <p class="text-[10px] text-textMuted">Online • Replies instantly</p>
+                    </div>
+                </div>
+                <button id="ai-close-btn" class="text-textMuted hover:text-white p-2"><i class="ph-bold ph-x"></i></button>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-black/20">
+                <div class="flex gap-3 animate-enter">
+                    <div class="w-8 h-8 rounded-full bg-white/5 flex-shrink-0 flex items-center justify-center"><i class="ph-fill ph-robot text-primary"></i></div>
+                    <div class="bg-white/5 border border-white/5 p-3 rounded-2xl rounded-tl-none text-sm text-textMuted max-w-[85%]">
+                        Hello! I'm your personal governance assistant. Ask me anything about schemes, documents, or eligibility.
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-white/5 bg-white/5 backdrop-blur-md">
+                <div class="relative">
+                    <input type="text" id="ai-input" placeholder="Ask e.g. 'How to apply for pension?'..." class="w-full bg-black/40 border border-white/10 rounded-xl pl-4 pr-12 py-3 text-sm text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                    <button id="ai-send-btn" class="absolute right-2 top-2 p-1.5 text-primary hover:text-white transition-colors rounded-lg hover:bg-white/10">
+                        <i class="ph-bold ph-paper-plane-right text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button id="ai-toggle-btn" class="group flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:scale-110 transition-all duration-300">
+            <i class="ph-fill ph-chat-teardrop-text text-2xl group-hover:hidden"></i>
+            <i class="ph-bold ph-caret-up text-2xl hidden group-hover:block"></i>
+        </button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
