@@ -234,6 +234,10 @@ def index():
             }
             age = age_map.get(age_group, 25)
 
+            # Normalize is_widow: sync with marital_status in case form didn't set it explicitly
+            if marital_status == 'Widowed':
+                is_widow = 'Yes'
+
             # ==========================================
             # PHASE 3: CONTEXT GENERATION (LSTM INPUT)
             # ==========================================
