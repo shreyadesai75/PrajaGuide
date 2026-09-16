@@ -17,6 +17,9 @@ class Scheme(db.Model):
     schemeCategory = db.Column(db.String)
     tags = db.Column(db.String)
 
+    def __repr__(self):
+        return f"<Scheme {self.scheme_name} [{self.schemeCategory}]>"
+
     def to_dict(self):
         return {
             "scheme_name": self.scheme_name,

@@ -3,6 +3,18 @@ import os
 import re
 
 def load_schemes():
+    """
+    Loads all government schemes from the database into a Pandas DataFrame.
+
+    Queries the Scheme model via SQLAlchemy, converts each record to a
+    dictionary, and returns the result as a DataFrame with NaN values filled
+    with empty strings. Returns an empty DataFrame if no data is found or
+    if a database error occurs.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing all scheme records, or an
+                      empty DataFrame on failure.
+    """
     try:
         from app.models import Scheme
         schemes = Scheme.query.all()
@@ -44,7 +56,19 @@ def search_relevant_schemes(df, query, top_k=5):
 
 def build_context_from_results(results_df):
     """
-    Build AI context from relevant schemes only.
+    Builds a plain-text context string from a DataFrame of relevant schemes.
+
+    Formats each scheme's name, category, state, and a truncated details
+    snippet (first 200 characters) into a structured block of text. This
+    context is passed to the AI/LLM as grounding information so it can
+    generate accurate, scheme-specific responses.
+
+    Args:
+        results_df (pd.DataFrame): A DataFrame of matched schemes, typically
+                                   returned by search_relevant_schemes().
+
+    Returns:
+        str: A formatted multi-line string containing scheme context blocks.
     """
     context = ""
 
