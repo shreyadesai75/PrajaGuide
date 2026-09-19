@@ -434,6 +434,7 @@ class AssistantController {
 class UIController {
     constructor() {
         this.initSmoothScroll();
+        this.initReportSharing();
     }
 
     initSmoothScroll() {
@@ -444,6 +445,49 @@ class UIController {
                 if(target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
+    }
+
+    initReportSharing() {
+        const shareButton = document.getElementById('share-report-btn');
+        if (!shareButton) return;
+
+        shareButton.addEventListener('click', async () => {
+            const schemeCount = document.querySelectorAll('.scheme-card').length;
+            const topSchemes = [...document.querySelectorAll('.scheme-card h3')]
+                .slice(0, 3)
+                .map(scheme => scheme.textContent.trim())
+                .join(', ');
+            const shareData = {
+                title: 'My PrajaGuide Eligibility Report',
+                text: `PrajaGuide found ${schemeCount} government scheme${schemeCount === 1 ? '' : 's'} for me${topSchemes ? `: ${topSchemes}.` : '.'}`
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                    this.showShareStatus('Report ready to share.');
+                } else if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(shareData.text);
+                    this.showShareStatus('Report summary copied to clipboard.');
+                } else {
+                    this.showShareStatus('Copy the report URL from your browser to share it.');
+                }
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    this.showShareStatus('Sharing is unavailable right now.');
+                }
+            }
+        });
+    }
+
+    showShareStatus(message) {
+        const status = document.getElementById('share-status');
+        if (!status) return;
+
+        status.textContent = message;
+        status.classList.remove('hidden');
+        clearTimeout(this.shareStatusTimeout);
+        this.shareStatusTimeout = setTimeout(() => status.classList.add('hidden'), 3500);
     }
 }
 

@@ -16,7 +16,7 @@
                 <button onclick="window.print()" class="flex-1 py-3 rounded-xl bg-surface border border-white/10 text-white font-medium hover:bg-white/5 transition flex items-center justify-center gap-2">
                     <i class="ph-bold ph-printer"></i> Print PDF
                 </button>
-                <button class="flex-1 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition shadow-lg shadow-primary/25 flex items-center justify-center gap-2">
+                <button id="share-report-btn" type="button" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition shadow-lg shadow-primary/25 flex items-center justify-center gap-2" aria-label="Share eligibility report">
                     <i class="ph-bold ph-share-network"></i> Share
                 </button>
             </div>
@@ -60,6 +60,8 @@
             </div>
         </div>
     </div>
+
+    <div id="share-status" class="fixed bottom-6 left-1/2 z-50 hidden -translate-x-1/2 rounded-xl border border-success/30 bg-surface px-4 py-3 text-sm text-white shadow-2xl" role="status" aria-live="polite"></div>
 
     <div class="border-b border-white/5 mb-10"></div>
 
